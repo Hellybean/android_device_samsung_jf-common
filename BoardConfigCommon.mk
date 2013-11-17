@@ -27,7 +27,7 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/jf-common/include
 
 # Kernel
 TARGET_KERNEL_SOURCE         := kernel/samsung/jf
-BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom user_debug=31 zcache
+BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 zcache
 BOARD_KERNEL_BASE            := 0x80200000
 BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE        := 2048
@@ -43,6 +43,7 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/jf-common/rootdir/etc/fstab.qcom
 
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -56,6 +57,9 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/jf-common/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/jf-common/bluetooth/vnd_jf.txt
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
+
+# Needed for blobs
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Don't use qcom camera HAL
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -109,7 +113,6 @@ BOARD_SEPOLICY_UNION += \
 	mediaserver.te \
 	mpdecision.te \
 	netmgrd.te \
-	property.te \
 	qmux.te \
 	rild.te \
 	rmt.te \
