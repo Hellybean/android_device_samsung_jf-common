@@ -100,6 +100,12 @@ PRODUCT_PACKAGES += \
     Tag \
     com.android.nfc_extras
 
+# IR packages
+PRODUCT_PACKAGES += \
+    consumerir.msm8960
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
+
 # NFCEE access control + configuration
 NFCEE_ACCESS_PATH := device/samsung/jf-common/nfc/nfcee_access.xml
 PRODUCT_COPY_FILES += \
@@ -157,6 +163,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.speaker.location=high \
     ro.qc.sdk.audio.fluencetype=fluence \
     persist.timed.enable=true \
+    persist.fuse_sdcard=true \
     ro.emmc.sdcard.partition=17 \
     ro.use_data_netmgrd=true \
     persist.data.ds_fmc_app.mode=0 \
